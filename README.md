@@ -1,98 +1,129 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# todo-nestjs - NestJS API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+[![NestJS](https://img.shields.io/badge/Framework-NestJS-E0234E?logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![TypeORM](https://img.shields.io/badge/ORM-TypeORM-fe0808?logo=typeorm&logoColor=white)](https://typeorm.io/)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Tabla de Contenidos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. Descripción
+2. Requisitos Previos
+3. Configuración del Proyecto
+    * Instalación
+    * Variables de Entorno
+    * Base de Datos
+4. Ejecución
+5. Referencia de la API
+6. Estructura de Módulos
+7. Tecnologías Utilizadas
+8. Autor
 
-## Project setup
+---
 
+## Descripción
+
+Este proyecto implementa el backend de una aplicación de lista de tareas (To-Do List), permitiendo el registro de usuarios y la asignación dinámica de tareas con persistencia de datos relacional.
+
+---
+
+## Requisitos Previos
+
+Antes de configurar el proyecto, asegúrate de tener instaladas las siguientes herramientas en tu sistema:
+
+* **Node.js**: Versión **18.0.0** o superior.  
+    *Puedes verificarlo con: `node -v` ó `node --version`*
+* **PostgreSQL**: Motor de base de datos relacional (v14 o superior).
+* **Gestor de paquetes**: **npm** (viene con Node.js).
+* **Herramienta de Base de Datos**: 
+    * **pgAdmin 4** (Recomendado para visualización).
+    * Opcionalmente, extensión de VS Code: *PostgreSQL*.
+* **Cliente API**: **Postman** para probar los endpoints.
+
+---
+
+## Configuración e Instalación
+
+Sigue estos pasos para poner en marcha el entorno local:
+
+### 1. Instalación
+Clona el repositorio:
 ```bash
+git clone <url-del-repositorio>
+cd todo-nestjs
+```
+
+Luego, descarga las dependencias del framework y los controladores necesarios para la base de datos:
+```bash
+# Instalar dependencias del núcleo
 $ npm install
+
+# Instalar dependencias de base de datos y configuración
+$ npm install @nestjs/typeorm typeorm pg @nestjs/config
+
+# Instalar dependencias de encriptación (JWT)
+$ npm install @nestjs/passport passport @nestjs/jwt passport-jwt bcrypt
+$ npm install -D @types/passport-jwt @types/bcrypt
+
+# Instalar dependencias de validación (DTOs)
+$ npm install class-validator class-transformer
 ```
 
-## Compile and run the project
+### 2. Variables de entorno
+
+Crea un archivo llamado .env en la raíz del proyecto. Este archivo es fundamental para que NestJS sepa cómo conectarse a PostgreSQL. Copia y adapta el siguiente contenido:
+```bash
+# Conexión a Base de Datos
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=tu_usuario_postgres
+DB_PASSWORD=tu_contraseña_aqui
+DB_NAME=todo_bdd
+JWT_SECRET=contraseña_secreta
+```
+
+### 3. Base de Datos
+
+El proyecto utiliza **PostgreSQL** como motor relacional. La estructura de las tablas se gestiona mediante el esquema de **Code First** (el código define la base de datos) a través de TypeORM.
+
+Antes de iniciar la aplicación, debes asegurar que el servidor de PostgreSQL esté corriendo y crear la base de datos manualmente:
+
+```sql
+CREATE DATABASE todo_bdd;
+```
+
+---
+
+## Ejecución
+
+Una vez configurada la base de datos y el archivo `.env`, puedes iniciar el servidor:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# Modo desarrollo (con recarga automática al guardar cambios)
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## Tecnologías Utilizadas
 
-# e2e tests
-$ npm run test:e2e
+El proyecto está construido con un stack moderno enfocado en la robustez, el tipado fuerte y la escalabilidad:
 
-# test coverage
-$ npm run test:cov
-```
+* **[NestJS](https://nestjs.com/):** Framework de Node.js orientado a objetos para construir aplicaciones del lado del servidor eficientes y confiables.
+* **[TypeScript](https://www.typescriptlang.org/):** Superconjunto de JavaScript que añade tipado estático, facilitando la detección de errores en desarrollo.
+* **[PostgreSQL](https://www.postgresql.org/):** Sistema de gestión de bases de datos relacionales potente y de código abierto.
+* **[TypeORM](https://typeorm.io/):** Object-Relational Mapper (ORM) que permite interactuar con la base de datos usando clases y decoradores de TypeScript.
+* **[@nestjs/config](https://docs.nestjs.com/techniques/configuration):** Módulo oficial para la gestión de variables de entorno mediante archivos `.env`.
+* **Class-Validator & Class-Transformer:** Librerías para asegurar que los datos que entran a la API (DTOs) cumplan con el formato y las reglas de negocio.
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Autor
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Desarrollado por **Jeisi Rosales**.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Si tienes alguna duda sobre este proyecto o quieres conectar conmigo, puedes encontrarme en:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+* **LinkedIn:** [Jeisi Rosales](https://linkedin.com/in/tu-perfil)
+* **Email:** jeisirosales2003@gmail.com
