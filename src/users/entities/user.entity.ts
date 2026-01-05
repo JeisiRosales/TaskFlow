@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Exclude as ExcludeDecorator } from 'class-transformer';
+import { Exclude, Exclude as ExcludeDecorator } from 'class-transformer';
 
 // @Entity: Marca esta clase como una entidad de base de datos.
 // 'users' es el nombre de la tabla en PostgreSQL.
