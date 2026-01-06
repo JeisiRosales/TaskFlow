@@ -24,6 +24,11 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
+  // Buscar usuario por ID.
+  async findById(userId: string) {
+    return await this.usersRepository.findOne({ where: { user_id: Number(userId) } });
+  }
+
   // Obtener usuario por ID.
   findOne(id: number) {
     return this.usersRepository.findOne({ where: { user_id: id } });
