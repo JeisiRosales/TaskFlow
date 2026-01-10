@@ -95,9 +95,12 @@ El proyecto consiste en una plataforma que permite a los usuarios:
 - `date-fns` (Manejo de fechas)
 - `zod`, `react-hook-form` (Validación y formularios)
 
-## 👤 Realizado por
+## 👤 Desarrollado por **Jeisi Rosales**.
 
-**Jeisi Rosales**
+Si tienes alguna duda sobre este proyecto o quieres conectar conmigo, puedes encontrarme en:
+
+* **LinkedIn:** [Jeisi Rosales](https://linkedin.com/in/tu-perfil)
+* **Email:** jeisirosales2003@gmail.com
 
 ---
 Este proyecto fue desarrollado con el objetivo de demostrar habilidades en el desarrollo de aplicaciones full-stack modernas, priorizando la experiencia de usuario y la escalabilidad del código.
