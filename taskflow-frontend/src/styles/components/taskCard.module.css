@@ -1,0 +1,116 @@
+.card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    animation: slideUp var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+
+.title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text-primary);
+    flex: 1;
+}
+
+.status {
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.statusPending {
+    background-color: rgba(128, 128, 128, 0.2);
+    color: #a0a0a0;
+}
+
+.statusInProgress {
+    background-color: rgba(91, 127, 255, 0.2);
+    color: var(--color-status-in-progress);
+}
+
+.statusCompleted {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--color-status-completed);
+}
+
+.statusCancelled {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--color-status-cancelled);
+}
+
+.description {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.date,
+.category,
+.priority {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+}
+
+.date {
+    color: var(--color-text-secondary);
+}
+
+.category {
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.priority {
+    color: var(--color-text-secondary);
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

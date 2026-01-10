@@ -17,7 +17,7 @@ export class Comment {
     @Column({ type: 'text' })
     comment_content: string;
 
-    @ManyToOne(() => Task, { eager: false })
+    @ManyToOne(() => Task, { eager: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'comment_from_task' })
     task: Task;
 

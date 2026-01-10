@@ -59,6 +59,40 @@ export class TasksService {
         });
     }
 
+    async update(id: string, updateTaskDto: any): Promise<Task> {
+        const task = await this.findOne(id);
+
+        // Actualizar campos básicos
+        if (updateTaskDto.task_name) task.task_name = updateTaskDto.task_name;
+        if (updateTaskDto.task_descrip !== undefined) task.task_descrip = updateTaskDto.task_descrip;
+        if (updateTaskDto.task_story_points !== undefined) task.task_story_points = updateTaskDto.task_story_points;
+        if (updateTaskDto.task_delivery_date !== undefined) {
+            task.task_delivery_date = updateTaskDto.task_delivery_date ? new Date(updateTaskDto.task_delivery_date) : null;
+        }
+        if (updateTaskDto.task_status) task.task_status = updateTaskDto.task_status;
+
+        // Actualizar relaciones si se proporcionan
+        if (updateTaskDto.assignedToId !== undefined) {
+            if (updateTaskDto.assignedToId) {
+                const assignedUser = await this.usersService.findOne(+updateTaskDto.assignedToId);
+                task.assignedTo = assignedUser;
+            } else {
+                task.assignedTo = null;
+            }
+        }
+
+        if (updateTaskDto.categoryId !== undefined) {
+            if (updateTaskDto.categoryId) {
+                const category = await this.categoriesService.findOne(updateTaskDto.categoryId);
+                task.category = category;
+            } else {
+                task.category = null;
+            }
+        }
+
+        return await this.tasksRepository.save(task);
+    }
+
     async findOne(id: string): Promise<Task> {
         const task = await this.tasksRepository.findOne({
             where: { task_id: id },

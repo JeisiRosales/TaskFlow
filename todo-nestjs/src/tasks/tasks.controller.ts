@@ -34,6 +34,11 @@ export class TasksController {
         return this.tasksService.findOne(id);
     }
 
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updateTaskDto: any) {
+        return this.tasksService.update(id, updateTaskDto);
+    }
+
     @Patch(':id/status')
     updateStatus(@Param('id') id: string, @Body() updateStatusDto: UpdateTaskStatusDto) {
         return this.tasksService.updateStatus(id, updateStatusDto);

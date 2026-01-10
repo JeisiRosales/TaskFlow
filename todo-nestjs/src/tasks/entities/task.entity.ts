@@ -34,17 +34,17 @@ export class Task {
 
     @ManyToOne(() => User, { eager: true, nullable: true })
     @JoinColumn({ name: 'task_assign_to' })
-    assignedTo: User;
+    assignedTo: User | null;
 
     @Column({ type: 'int', default: 0 })
     task_story_points: number;
 
     @Column({ type: 'timestamp', nullable: true })
-    task_delivery_date: Date;
+    task_delivery_date: Date | null;
 
     @ManyToOne(() => Category, { eager: true, nullable: true })
     @JoinColumn({ name: 'task_category' })
-    category: Category;
+    category: Category | null;
 
     @Column({
         type: 'enum',
