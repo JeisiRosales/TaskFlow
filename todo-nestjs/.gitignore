@@ -3,11 +3,6 @@
 /node_modules
 /build
 /.env
-/ANALISIS-BACKEND.md
-/GUIA-IMPLEMENTACION-FRONTEND.md
-/GUIA-IMPLEMENTACION.md
-/guia-implentacion.md
-/roadmap.md
 
 # Logs
 logs

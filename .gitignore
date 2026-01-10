@@ -1,0 +1,21 @@
+# compiled output
+/ANALISIS-BACKEND.md
+/GUIA-IMPLEMENTACION-FRONTEND.md
+/GUIA-IMPLEMENTACION.md
+/guia-implentacion.md
+/roadmap.md
+
+# Dependencias
+**/node_modules/
+
+# Compilacion
+**/dist/
+**/build/
+
+# Variables de entorno
+**/.env
+**/.env.local
+
+# Otros
+.DS_Store
+*.log
